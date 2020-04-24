@@ -1,11 +1,9 @@
 const router = require('express').Router();
+const authMiddle = require('./authenticate-middleware');
+const authController = require('./authcontroller');
 
-router.post('/register', (req, res) => {
-  // implement registration
-});
+router.post('/register', authMiddle.validateRegistration, authController.register);
 
-router.post('/login', (req, res) => {
-  // implement login
-});
+router.post('/login', authMiddle.validateLogin, authController.login);
 
 module.exports = router;
